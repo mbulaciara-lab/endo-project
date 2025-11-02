@@ -82,8 +82,10 @@
     <div class="lesion" style="top:30px; left:70px;"></div>
     <div class="lesion" style="top:90px; left:140px;"></div>
     <div class="lesion" style="top:80px; left:200px;"></div>
-    <div class="lesion" style="top:20px; left:200px;"></div>
-    <div class="lesion" style="top:100px; left:13px;"></div>
+    <div class="lesion" style="top:28px; left:200px;"></div>
+    <div class="lesion" style="top:100px; left:45px;"></div>
+    <div class="lesion" style="top:150px; left:140px;"></div>
+    <div class="lesion" style="top:150px; left:140px;"></div>
   </div>
 
   <h3 id="question"></h3>
@@ -187,6 +189,29 @@
     }
 
     showQuestion();
+    function endGame() {
+  let message = "";
+
+  if (activeLesions === 0) {
+    message = "🎉 Amazing! You kept the uterus healthy!";
+  } else if (activeLesions === lesions.length) {
+    message = "😢 The uterus is fully covered — try again!";
+  } else {
+    message = "💛 You did okay — some lesions remain.";
+  }
+
+  // show message and button
+  document.getElementById("question").textContent = message;
+  document.getElementById("options").innerHTML = '<button onclick="restartQuiz()">Try Again</button>';
+}
+
+function restartQuiz() {
+  // reset everything back to start
+  current = 0;
+  activeLesions = 0;
+  lesions.forEach(l => l.style.display = "none");
+  showQuestion();
+}s
   </script>
 </body>
 </html>
